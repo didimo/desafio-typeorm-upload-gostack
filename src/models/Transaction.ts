@@ -1,13 +1,13 @@
 import {
-  Entity,
   Column,
-  PrimaryGeneratedColumn,
   CreateDateColumn,
-  UpdateDateColumn,
-  ManyToOne,
+  Entity,
   JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  // eslint-disable-next-line prettier/prettier
+  UpdateDateColumn
 } from 'typeorm';
-
 import Category from './Category';
 
 @Entity('transactions')
@@ -27,7 +27,7 @@ class Transaction {
   @Column()
   category_id: string;
 
-  @ManyToOne(() => Category)
+  @ManyToOne(() => Category, category => category.transaction, { eager: true })
   @JoinColumn({ name: 'category_id' })
   category: Category;
 
